@@ -2,8 +2,8 @@ import User from '../models/UserSchema.js'
 import Doctor from  '../models/DoctorSchema.js'
 import jwt from  'jsonwebtoken'
 import bcrypt from 'bcryptjs'
-export const register = async(req, res)=>{
-    const {email, password, name, photo, gender} = req.body;
+export const register = async (req, res)=>{
+    const {email, password, name, role, photo, gender} = req.body;
     try {
         let user =  null
         if (role === 'patient'){
@@ -12,8 +12,8 @@ export const register = async(req, res)=>{
             user = Doctor.findOne({email})
         }
         //check if user exist
-        if (user){
-            return res.status(400).json({message: 'User alreadu exist'})
+        if (user) {
+            return res.status(400).json({message: 'User already exist'})
         }
         //hash password
         const salt = await bcrypt.genSalt(10)
@@ -44,7 +44,7 @@ export const register = async(req, res)=>{
         res.status(200).json({success:true , message:'User successfully created'})
 
     } catch (error) {
-        res.status(200).json({success:true , message:'Internal server error, try again'})
+        res.status(200).json({success:false , message:'Internal server error, try again'})
     }
 }
 

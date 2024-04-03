@@ -5,9 +5,9 @@ import mongoose, { connect } from 'mongoose'
 import dotenv from 'dotenv'
 import authRoute from './Routes/auth.js'
 dotenv.config()
-
+const port = process.env.PORT || 8000;
 const app = express()
-const port = process.env.PORT || 8000
+// const port = process.env.PORT || 8000;
 
 const corsOptions ={
     origin:true
@@ -17,11 +17,14 @@ app.get('/',(req, res)=> {
     res.send('Api is Working')
 })
 
+// app.listen(port, () =>{
+//     console.log("Server is running on prot" + 8000);
+// })
 //middleware
 app.use(express.json())
 app.use(cookiesParser())
 app.use(cors(corsOptions))
-app.use('/api/vi/auth', authRoute) //domain/api/vi/register
+app.use('/api/v1/auth', authRoute) //domain/api/v1/register
 
 //database connection
 mongoose.set('strictQuery', false)
