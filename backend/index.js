@@ -20,6 +20,7 @@ app.get('/',(req, res)=> {
 // app.listen(port, () =>{
 //     console.log("Server is running on prot" + 8000);
 // })
+
 //middleware
 app.use(express.json())
 app.use(cookiesParser())
