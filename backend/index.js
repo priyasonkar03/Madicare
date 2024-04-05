@@ -6,6 +6,7 @@ import dotenv from 'dotenv'
 import authRoute from './Routes/auth.js';
 import userRoute from './Routes/user.js';
 import doctorRoute from './Routes/doctor.js';
+import reviewRoute from './Routes/review.js';
 
 
 dotenv.config()
@@ -39,13 +40,14 @@ const connectDB = async()=>{
     }
 }
 
-//middleware
+//middleware this is very important for postman api
 app.use(express.json());
 app.use(cookiesParser());
 app.use(cors(corsOptions));
 app.use('/api/v1/auth', authRoute); //domain/api/v1/register
 app.use('/api/v1/users', userRoute); //domain/api/v1/users
 app.use('/api/v1/doctors', doctorRoute); //domain/api/v1/doctor
+app.use('/api/v1/reviews', reviewRoute); //domain/api/v1/review
 
 
 app.listen(port, ()=>{

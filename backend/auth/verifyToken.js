@@ -9,13 +9,13 @@ export const authenticate = async (req, res, next) =>{
     const authToken = req.headers.authorization
 
     //check token is exists
-    if(!authToken || !authToken.startsWith('Bearer')){
-        return res.status(401).json({success:false, message:'No token authorization denied'})
+    if(!authToken || !authToken.startsWith("Bearer ")){
+        return res.status(401).json({success:false, message:'No token, authorization denied'})
     }
 
     try {
         // console.log(authToken);
-        const token = authToken.split("")[1];
+        const token = authToken.split(" ")[1];
         //verify token
         const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY)
 
@@ -25,14 +25,13 @@ export const authenticate = async (req, res, next) =>{
         next();     //must be call the next function
     } catch (err) {
         if (err.name === 'TokenExpiredError'){
-            return res.status(401).json({message:'Token is expired'})
+            return res.status(401).json({ message:"Token is expired"})
         }
         return res.status(401).json({success:false, message:"Invalid token"})
     }
-
 };
 
-export const restrict = roles => async (req, res, next)=>{
+export const restrict = roles => async (req, res, next) =>{
     const userId = req.userId
 
     let user;
@@ -51,4 +50,4 @@ export const restrict = roles => async (req, res, next)=>{
         return res.status(401).json({success:false, message:"You're not authorized"});
     }
     next();
-}
+};
