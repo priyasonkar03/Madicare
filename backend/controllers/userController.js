@@ -1,4 +1,6 @@
 import User from '../models/UserSchema.js'
+import Booking from '../models/BookingSchema.js';
+import Doctor from '../models/DoctorSchema.js'
 //for update users
 export const updateUser = async (req, res)=>{
     const id = req.params.id;
@@ -47,3 +49,44 @@ export const getAllUser = async (req, res)=>{
         res.status(404).json({success:false, message:"Not found"})    
     }
 };
+
+
+//new function for userprofile
+export const getUserProfile = async (req, res) =>{
+    const userId = req.userId
+    try {
+        const user = await User.findById(userId)
+
+        if(!user){
+            return res.status(404).json({success:false, message:"User not found"})
+        }
+
+        const {password, ...rest} = user._doc 
+
+        res.status(200).json({success:true, message:'Profile info is getting', data:[...rest]})
+
+    } catch (err) {
+        res.status(500).json({ success:false, message:"Something went wrong cannot get"})           
+    }
+};
+
+//now function call get my appointments
+
+export const getMyAppointments = async(req, res)=>{
+    try {
+        
+        //step-1 : retrive appointment from booking for specific user
+        const bookings = await Booking.find({user:req.userId})
+
+        //step-2 : retrive doctor ids from appointment bookings
+        const doctorIds = bookings.map(el=>el.doctor.id)
+
+        //step-3 : retrive doctors using doctor ids
+        const doctors = await Doctor.find({_id: {$in:doctorIds}}).select('-password')
+
+        res.status(200).json({success:true, message:"Appointments are getting", data:doctors})
+
+    } catch (err) {
+        res.status(500).json({ success:false, message:"Something went wrong cannot get"})                  
+    }
+}

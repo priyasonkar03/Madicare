@@ -72,8 +72,7 @@ const Signup = () => {
       toast.error(err.message)
       setLoading(false)
     }
-
-  }
+  };
 
   return <section className='px-5 xl:px-0'>
     <div className="max-w-[1170px] m-auto ">
