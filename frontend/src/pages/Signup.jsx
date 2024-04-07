@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import  { useState } from 'react'
 import signupImg from '../assets/images/signup.gif'
-import avatar from '../assets/images/doctor-img01.png';
+
 import { Link, useNavigate } from 'react-router-dom';
 import uploadImageClodinary from '../utils/uploadCloudinary';
 import { BASE_URL } from '../../config';
@@ -13,11 +13,11 @@ const Signup = () => {
   const [loading, setLoading] = useState(false)
 
   const [formData , setFormData] =useState({
-    name:'',
-    email:'',
-    password:'',
-    photo:'',
-    gender:'',
+    name:"",
+    email:"",
+    password:"",
+    photo:selectedFile,
+    gender:"",
     role:'patient'
   }); 
 
@@ -94,21 +94,21 @@ const Signup = () => {
           value={formData.name} onChange={handleInputChange}
           className="w-full pr-4 py-3 border-b border-solid border-[#0066ff61] 
           focus:outline-none focus:border-b-primaryColor text-[16px] leading-7
-          text-headingColor  cursor-pointer"/>
+          text-headingColor  cursor-pointer" required/>
         </div>
         <div className="mb-5">
           <input type="email" placeholder="Enter your email" name="email" 
           value={formData.email} onChange={handleInputChange}
           className="w-full pr-4 py-3 border-b border-solid border-[#0066ff61] 
           focus:outline-none focus:border-b-primaryColor text-[16px] leading-7
-          text-headingColor  cursor-pointer"/>
+          text-headingColor  cursor-pointer" required/>
         </div>
         <div className="mb-5">
           <input type="password" placeholder="Password" name="password" 
           value={formData.password} onChange={handleInputChange}
           className="w-full pr-4 py-3 border-b border-solid border-[#0066ff61] 
           focus:outline-none focus:border-b-primaryColor text-[16px] leading-7
-          text-headingColor  cursor-pointer"/>
+          text-headingColor  cursor-pointer" required/>
         </div>
 
         <div className="mb-5 flex items-center justify-between">
@@ -136,11 +136,11 @@ const Signup = () => {
         </div>
 
         <div className="mb-5 flex items-center gap-3">
-          { selectedFile && <figure className='w-[60px] h-[60px] rounded-full border-2
+          { selectedFile && (<figure className='w-[60px] h-[60px] rounded-full border-2
           border-solid border-primaryColor flex items-center justify-center'>
             <img src={previewURL} 
             alt="" className='w-full rounded-full'/>
-          </figure>}
+          </figure>)}
           <div className='relative w-[160px] h-[50px]'>
           <input type="file" name='photo' 
           id='customFile'
