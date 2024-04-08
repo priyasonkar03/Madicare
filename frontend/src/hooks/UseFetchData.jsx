@@ -1,6 +1,5 @@
 import {useEffect, useState} from 'react'
-import { token } from '../../config'
-
+import { token } from '../config'
 
 const useFetchData = (url) => {
     const [data,setData] = useState([])
@@ -8,38 +7,41 @@ const useFetchData = (url) => {
     const [error , setError] = useState(null)
     
     //this function use for handling the data and fatching the data
-    useEffect(()=>{
+    useEffect(() => {
         const fetchData = async () =>{
             
             setLoading(true)
 
             try {
                 const res = await fetch(url, {
-                    headers:{Authorization :`Bearer ${token}`},
+                    headers:{ Authorization :`Bearer ${token}`},
                 })
     
                 const result = await res.json()
     
                 if (!res.ok){
-                    throw new Error(result.message + "🥺")
+                    throw new Error(result.message + "🥺");
                     // return toast.error(result.message)
                 }
 
-                setData(result.data)
-                setLoading(false)
+                setData(result.data);
+                setLoading(false);
 
             } catch (err) {
-               setLoading(false)
-               setError(err.message)                     
+               setLoading(false);
+               setError(err.message);                     
             }
-        }
+        };
 
-        fetchData()
-    },[url])
+        fetchData();
+    },[url]);
 
     return {
-        data, loading, error
+        data, 
+        loading, 
+        error
     }
 }
 
 export default useFetchData
+

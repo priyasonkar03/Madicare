@@ -2,7 +2,7 @@ import  { useEffect, useState } from 'react'
 
 import { useNavigate } from 'react-router-dom';
 import uploadImageClodinary from '../../utils/uploadCloudinary';
-import { BASE_URL, token } from '../../../config';
+import { BASE_URL, token } from '../../config';
 import { toast } from 'react-toastify';
 import HashLoader from 'react-spinners/HashLoader'
 

@@ -1,10 +1,9 @@
-import useFetchData from "../../hooks/UseFetchData";
-import { BASE_URL } from "../../../config";
+import { BASE_URL } from "../../config";
 import DoctorCard from "../../components/doctors/DoctorCard";
 import Loading from "../../components/loader/Loading";
 import Error from "../../components/error/Error";
 import { BsTypeH2 } from "react-icons/bs";
-
+import useFetchData from "../../hooks/useFetchData";
 const MyBookings = () => {
     const {data:appointments, 
         loading, 
@@ -22,7 +21,7 @@ const MyBookings = () => {
         )}
         </div>)}
 
-        {!loading && !error && appointments.length===0 && (
+        {!loading && !error && appointments.length === 0 && (
             <h2 className="mt-5 text-center  leading-7 text-[20px] font-semibold 
             text-primaryColor">
                 You did not book any doctor yet!</h2>
