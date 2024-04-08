@@ -4,7 +4,7 @@ import { authContext } from '../../context/AuthContext.jsx';
 import MyBookings from './MyBookings';
 import Profile from './Profile';
 
-import useGetProfile from '../../hooks/useFetchData.jsx';
+import useGetProfile from '../../hooks/useFetchData.jsx'
 
 
 import Loading from '../../components/loader/Loading';
@@ -16,11 +16,9 @@ const MyAccount = () => {
     const { dispatch } = useContext(authContext);
     const [tab, setTab] = useState('bookings'); // Correct usage of useState hook
 
-    const {data:userData, 
-        loading, 
-        error} = useGetProfile(`${BASE_URL}/users/profile/me`)
+    const {data:userData, loading, error} = useGetProfile(`${BASE_URL}/users/profile/me`)
 
-        console.log(userData, "userdata");
+    console.log(userData, "userdata");
 
     const handleLogout = () => {
         dispatch({ type: 'LOGOUT' });

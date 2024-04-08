@@ -42,7 +42,7 @@ export const getSingleDoctor = async (req, res)=>{
 export const getAllDoctor = async (req, res)=>{
     //const id = req.params.id;
     try {
-        //Query for filters doctor
+        //Query for filters doctor (find the doctors )
         const {query} = req.query
         let doctors;
 

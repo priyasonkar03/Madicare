@@ -88,7 +88,7 @@ export const login = async(req, res)=>{
         //get token
         const token = generateToken(user)
 
-        const {password, role, appointment, ...rest} = user._doc
+        const {password, role, appointments, ...rest} = user._doc
 
         res
         .status(200)
