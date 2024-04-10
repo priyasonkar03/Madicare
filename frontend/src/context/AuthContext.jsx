@@ -24,7 +24,6 @@ const authReducer = (state,action) =>{
             };
 
         case 'LOGOUT':
-            
             return{
                 user:null,
                 role:null,

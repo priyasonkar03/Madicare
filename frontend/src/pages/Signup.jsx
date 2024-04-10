@@ -29,7 +29,7 @@ const Signup = () => {
 
   //for image uploading
   const handleFileInputChange = async(event)=>{
-    const file = event.target.files[0]
+    const file = event.target.files[0];
     
     const data = await uploadImageClodinary(file)
 
@@ -45,14 +45,14 @@ const Signup = () => {
   //for image submit button
   const submitHandler = async (event)=>{
     // console.log(formData)
-    event.preventDefault()
+    event.preventDefault();
     setLoading(true)
 
     try {
       const res = await fetch (`${BASE_URL}/auth/register`,{
         method: 'post',
         headers:{
-          'Content-Type': 'application/json'
+          'Content-Type':'application/json'
         },
         body: JSON.stringify(formData)
       })
@@ -136,17 +136,21 @@ const Signup = () => {
         </div>
 
         <div className="mb-5 flex items-center gap-3">
-          { selectedFile && (<figure className='w-[60px] h-[60px] rounded-full border-2
+          { selectedFile && (
+          <figure className='w-[60px] h-[60px] rounded-full border-2
           border-solid border-primaryColor flex items-center justify-center'>
-            <img src={previewURL} 
-            alt="" className='w-full rounded-full'/>
-          </figure>)}
+          <img src={previewURL} 
+          alt="" className='w-full rounded-full'/>
+        </figure>
+        )}
           <div className='relative w-[160px] h-[50px]'>
+          
           <input type="file" name='photo' 
           id='customFile'
           onChange={handleFileInputChange}
           accept='.jpg, .png'
           className='absolute top-0 left-0 w-full h-full opacity-0 caret-purple-50'/>
+          
           <label htmlFor='customFile' 
           className='absolute top-0 left-0 w-full h-full flex
           items-center px-[0.75rem] py-[0.375rem] text-[15px] leading-6 overflow-hidden 
@@ -155,10 +159,12 @@ const Signup = () => {
           </div>
         </div>
         <div className="mt-7">
-          <button disabled={loading && true}
+          <button 
+          disabled={loading && true}
           type="submit" className="w-full bg-primaryColor text-white
           text-[18px] leading-[30px] px-4 py-3 rounded-lg">
-            { loading ? <HashLoader size={35} color='#ffffff'/> : 'Sign Up'}</button>
+          { loading ? <HashLoader size={35} color='#ffffff'/> : 'Sign Up'}
+          </button>
         </div>
         <p className="mt-5 text-textColor text-center">Already have an account?
         <Link to='/register' className="text-primaryColor font-medium ml-1  ">

@@ -1,14 +1,15 @@
+import useFetchData from "../../hooks/useFetchData";
 import { BASE_URL } from "../../config";
 import DoctorCard from "../../components/doctors/DoctorCard";
 import Loading from "../../components/loader/Loading";
 import Error from "../../components/error/Error";
-import { BsTypeH2 } from "react-icons/bs";
-import useFetchData from "../../hooks/useFetchData";
+// import { BsTypeH2 } from "react-icons/bs";
+
 const MyBookings = () => {
     const {data:appointments, 
         loading, 
         error
-        } = useFetchData(`${BASE_URL}/user/appointments/my-appointments`)
+        } = useFetchData(`${BASE_URL}/users/appointments/my-appointments`)
 
     return <div>
           {loading && !error && <Loading/> }

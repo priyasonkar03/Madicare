@@ -8,15 +8,15 @@ export const authenticate = async (req, res, next) =>{
     //get token from headers
     const authToken = req.headers.authorization
     //'Bearer' token in used
-    //check token is exists
+    //check token is exists or not
     if(!authToken || !authToken.startsWith("Bearer ")){
         return res.status(401).json({ success:false, message:'No token, authorization denied'})
     }
 
     try {
-        // console.log(authToken);
+        //console.log(authToken);
         const token = authToken.split(" ")[1];
-        //verify token
+         //verify token
         const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY)
 
         req.userId = decoded.id
@@ -74,7 +74,7 @@ export const restrict = roles => async (req, res, next) => {
             return res.status(401).json({ success: false, message: "You're not authorized" });
         }
 
-        next();
+        next(); //it must be used for authorized
     } catch (error) {
         console.error('Error in restrict middleware:', error);
         return res.status(500).json({ success: false, message: 'Internal server error' });

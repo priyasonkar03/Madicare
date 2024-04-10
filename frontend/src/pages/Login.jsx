@@ -13,7 +13,7 @@ const Login = () => {
   });
   
   const [loading, setLoading] = useState(false)
-  const navigate =useNavigate()
+  const navigate  = useNavigate()
   const {dispatch} = useContext(authContext)
 
   const handleInputChange = e =>{
@@ -48,7 +48,7 @@ const Login = () => {
           token:result.token,
           role:result.role,
         },
-       });
+      });
 
        console.log(result, "login data");
 
@@ -68,6 +68,7 @@ return <section className="px-5 lg:px-0">
     <div className="w-full max-w-[570px] mx-auto rounded-lg shadow-md md:p-10">
       <h3 className="text-headingColor text-[22px] leading-9 font-bold
       mb-10">Hello! <span className="text-primaryColor">Welcome</span>Back 🎉</h3>
+      
       <form className="py-4 md:py-0" onSubmit={submitHandler}> 
         <div className="mb-5">
           <input type="email" placeholder="Enter Your Email" name="email" 
@@ -86,9 +87,10 @@ return <section className="px-5 lg:px-0">
         </div>
 
         <div className="mt-7">
-          <button type="submit" className="w-full bg-primaryColor text-white
+          <button type="submit" 
+          className="w-full bg-primaryColor text-white
           text-[18px] leading-[30px] px-4 py-3 rounded-lg">
-            { loading ?<HashLoader size={25} color="#fff"/> : 'Login'}</button>
+            { loading ? <HashLoader size={25} color="#fff"/> : 'Login'}</button>
         </div>
         <p className="mt-5 text-textColor text-center">Don't have an account?
         <Link to='/register' className="text-primaryColor font-medium ml-1  ">

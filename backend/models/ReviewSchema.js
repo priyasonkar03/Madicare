@@ -55,6 +55,7 @@ await Doctor.findByIdAndUpdate(doctorId, {
   totalRating: stats[0].numberOfRating,
   averageRating: stats[0].avgRating,
 });
+// console.log(stats);
 };
 reviewSchema.post("save",function(){
   this.constructor.calcAverageRatings(this.doctor);

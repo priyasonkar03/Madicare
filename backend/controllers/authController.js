@@ -5,9 +5,9 @@ import bcrypt from 'bcryptjs'
 
 const generateToken = user=>{
     return jwt.sign({id:user._id, role:user.role}, process.env.JWT_SECRET_KEY, {
-        expiresIn: '15d', //this is important for day it will be changed it
-    })      //These are argument
-}
+        expiresIn: "15d", //this is important for day it will be changed it
+    });      //These are argument
+};
 
 
 export const register = async (req, res)=>{

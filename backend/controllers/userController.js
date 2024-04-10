@@ -63,9 +63,11 @@ export const getUserProfile = async (req, res) =>{
         }
 
         const { password, ...rest } = user._doc;
-        res.status(200).json({ success: true, message: 'Profile info retrieved', data: rest });
+        res.status(200).json({ success: true, message: 'Profile info retrieved', data: rest });   // chat gpt corrected
+        // res.status(200).json({ success: true, message: 'Profile info is getting', data: [...rest] });   this is the incorret
     } catch (err) {
-        res.status(500).json({ success: false, message: "Something went wrong while fetching profile" });           
+        // res.status(500).json({ success: false, message: "Something went wrong while fetching profile" });           
+        res.status(500).json({ success: false, message: "Something went wrong, cannot get" });           
     }
 };
 
@@ -74,7 +76,7 @@ export const getUserProfile = async (req, res) =>{
 export const getMyAppointments = async(req, res)=>{
     try {
         
-        //step-1 : retrive appointment from booking for specific user
+        //step-1 : retrive appointments from booking for specific user
         const bookings = await Booking.find({user:req.userId})
 
         //step-2 : retrive doctor ids from appointment bookings
@@ -83,7 +85,12 @@ export const getMyAppointments = async(req, res)=>{
         //step-3 : retrive doctors using doctor ids
         const doctors = await Doctor.find({_id: {$in:doctorIds}}).select('-password')
 
-        res.status(200).json({success:true, message:"Appointments are getting", data:doctors})
+        res
+        .status(200)
+        .json({
+            success:true, 
+            message:"Appointments are getting", 
+            data:doctors})
 
     } catch (err) {
         res.status(500).json({ success:false, message:"Something went wrong cannot get"})                  

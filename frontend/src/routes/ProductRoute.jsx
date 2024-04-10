@@ -1,6 +1,6 @@
 // eslint-disable react/prop-types
 import {useContext} from 'react'
-import { useNavigate } from 'react-router-dom'
+// import { useNavigate } from 'react-router-dom'
 import { Navigate } from 'react-router-dom'
 import { authContext } from '../context/AuthContext'
 
