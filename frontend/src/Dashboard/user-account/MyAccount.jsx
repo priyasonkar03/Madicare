@@ -4,7 +4,7 @@ import { authContext } from '../../context/AuthContext.jsx';
 import MyBookings from './MyBookings';
 import Profile from './Profile';
 
-import useGetProfile from '../../hooks/useFetchData.jsx'
+import useGetProfile from "../../hooks/useFetchData.jsx";
 
 
 import Loading from '../../components/loader/Loading';
