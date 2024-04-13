@@ -10,6 +10,7 @@ import MyAccount from '../Dashboard/user-account/MyAccount'
 import Dashboard from '../Dashboard/doctor-account/Dashboard'
 import {Routes, Route} from 'react-router-dom'
 import ProductRoute from './ProductRoute'
+import CheckoutSuccess from '../pages/CheckoutSuccess'
 const Routers = () => {
   return (
     <Routes>
@@ -21,8 +22,18 @@ const Routers = () => {
       <Route path='/register' element={<Signup/>} />
       <Route path='/contact' element={<Contact/>} />
       <Route path='/services' element={<Services/>} />
-      <Route path='/users/profile/me' element={<ProductRoute allowedRoles={['patient']} ><MyAccount/></ProductRoute>} />
-      <Route path='/doctors/profile/me' element={<ProductRoute allowedRoles={['patient']}><Dashboard/></ProductRoute>} />
+      <Route path='/checkout-success' element={<CheckoutSuccess/>} />
+      <Route 
+      path='/users/profile/me' element={
+      <ProductRoute allowedRoles={['patient']} >
+        <MyAccount/>
+      </ProductRoute>} />
+
+      <Route 
+      path='/doctors/profile/me' element={
+      <ProductRoute allowedRoles={['doctor']}>
+        <Dashboard />
+      </ProductRoute>} />
     </Routes>
   )
 }
