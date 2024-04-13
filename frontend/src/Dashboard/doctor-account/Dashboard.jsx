@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Loader from '../../components/loader/Loading';
 import Error from '../../components/error/Error';
-import useGetProfile from '../../hooks/useFetchData'; // Modified import
+import useGetProfile from '../../hooks/UseFetchData.jsx'; // Modified import
 import { BASE_URL } from '../../config.js';
 import Tabs from './Tabs.jsx';
 import starIcon from '../../assets/images/Star.png';
@@ -22,11 +22,12 @@ const Dashboard = ({name, about, qualification, experiences}) => {
       {error && !loading && <Error />}
 
       {
-        !loading && !error && (
+        !loading && !error && data && (
           <div className='grid lg:grid-cols-3 gap-[30px] lg:gap-[50px]'>
           <Tabs tab={tab} setTab={setTab}/>
           <div className="lg:col-span-2">
-            {data.isApproved === 'pending' && (<div className='flex p-4 mb-4 text-yellow-800
+            {data.isApproved === 'pending' && 
+            (<div className='flex p-4 mb-4 text-yellow-800
             bg-yellow-50 rounded-lg'>
                 <svg
                 aria-hidden="true"
@@ -92,12 +93,51 @@ const Dashboard = ({name, about, qualification, experiences}) => {
               </div>
             )}
 
-                {tab === 'appointments' && (<Appointments appointments={data.appointments}/>)}
-                {tab === 'settings' && <Profile doctorData={data}/>}
+               
+
+                  {tab === 'appointments' && data.appointments && (
+                  <Appointments appointments={data.appointments}/>
+                 )}
+          
+                {tab === 'settings' && (
+            <Profile doctorData={data}/>
+              )}
             </div>
           </div>
         </div>
       )};
+
+{/* {
+  !loading && !error && data && (
+    <div className='grid lg:grid-cols-3 gap-[30px] lg:gap-[50px]'>
+      <Tabs tab={tab} setTab={setTab}/>
+      <div className="lg:col-span-2">
+        {data.isApproved === 'pending' && (
+          <div className='flex p-4 mb-4 text-yellow-800 bg-yellow-50 rounded-lg'> */}
+            {/* Your code for pending approval message */}
+          {/* {/* </div>
+        )}
+
+        <div className="mt-8">
+          {tab === 'overview' && (
+            <div className='flex items-center gap-4 mb-10'> */}
+              {/* Your code for displaying doctor's overview */}
+            {/* </div>
+          )}
+
+          {tab === 'appointments' && data.appointments && (
+            <Appointments appointments={data.appointments}/>
+          )}
+          
+          {tab === 'settings' && (
+            <Profile doctorData={data}/>
+          )}
+        </div>
+      </div>
+    </div> 
+  )
+} */}
+
       
     </div>
     

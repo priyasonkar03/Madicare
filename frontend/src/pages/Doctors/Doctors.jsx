@@ -2,7 +2,7 @@ import DoctorCard from './../../components/doctors/DoctorCard'
 // import {doctors} from './../../assets/data/doctors'
 import Testimonial from '../../components/testimonial/Testimonial'
 import { BASE_URL} from './../../config';
-import useFetchData from './../../hooks/useFetchData';
+import useFetchData from './../../hooks/UseFetchData.jsx';
 import Loader from '../../components/loader/Loading';
 import Error from '../../components/error/Error';
 import { useEffect, useState } from 'react';

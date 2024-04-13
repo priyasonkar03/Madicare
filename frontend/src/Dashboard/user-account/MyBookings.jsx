@@ -1,4 +1,4 @@
-import useFetchData from "../../hooks/useFetchData";
+import useFetchData from "../../hooks/UseFetchData.jsx";
 import { BASE_URL } from "../../config";
 import DoctorCard from "../../components/doctors/DoctorCard";
 import Loading from "../../components/loader/Loading";

@@ -31,9 +31,10 @@ const Routers = () => {
 
       <Route 
       path='/doctors/profile/me' element={
-      <ProductRoute allowedRoles={['doctor']}>
-        <Dashboard />
+      <ProductRoute allowedRoles={['doctor']} >
+        <Dashboard/>
       </ProductRoute>} />
+     
     </Routes>
   )
 }

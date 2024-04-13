@@ -12,7 +12,7 @@ const useFetchData = (url) => {
             try {
                 const res = await fetch(url, {
                     headers: { 
-                        Authorization: `Bearer ${token}` // Use token directly without curly braces
+                        Authorization: `Bearer ${token}`
                     }
                 });
                 const result = await res.json();

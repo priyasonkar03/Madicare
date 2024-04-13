@@ -1,6 +1,6 @@
 import DoctorCard from './DoctorCard';
 import { BASE_URL} from './../../config';
-import useFetchData from './../../hooks/useFetchData';
+import useFetchData from '../../hooks/UseFetchData';
 import Loader from '../../components/loader/Loading';
 import Error from '../../components/error/Error';
 
