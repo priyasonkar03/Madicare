@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { token } from '../config'; // Corrected import assuming token is a default export from '../config'
 
-const useFetchData = (url) => {
+const UseFetchData = (url) => {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
@@ -12,7 +12,7 @@ const useFetchData = (url) => {
             try {
                 const res = await fetch(url, {
                     headers: { 
-                        Authorization: `Bearer ${token}`
+                        Authorization: `Bearer ${token}`,
                     }
                 });
                 const result = await res.json();
@@ -46,7 +46,7 @@ const useFetchData = (url) => {
     };
 };
 
-export default useFetchData;
+export default UseFetchData;
 
 
 

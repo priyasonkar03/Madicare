@@ -7,7 +7,8 @@ import Signup from '../pages/Signup'
 import Doctors from '../pages/Doctors/Doctors'
 import DoctorsDetails from '../pages/Doctors/DoctorDetails'
 import MyAccount from '../Dashboard/user-account/MyAccount'
-import Dashboard from '../Dashboard/doctor-account/Dashboard'
+import DoctorAccount from '../Dashboard/doctor-account/DoctorAccount'
+
 import {Routes, Route} from 'react-router-dom'
 import ProductRoute from './ProductRoute'
 import CheckoutSuccess from '../pages/CheckoutSuccess'
@@ -32,7 +33,7 @@ const Routers = () => {
       <Route 
       path='/doctors/profile/me' element={
       <ProductRoute allowedRoles={['doctor']} >
-        <Dashboard/>
+        <DoctorAccount/>
       </ProductRoute>} />
      
     </Routes>
