@@ -1,5 +1,4 @@
 import DoctorCard from './../../components/doctors/DoctorCard'
-// import {doctors} from './../../assets/data/doctors'
 import Testimonial from '../../components/testimonial/Testimonial'
 import { BASE_URL} from './../../config';
 import useFetchData from './../../hooks/UseFetchData.jsx';

@@ -17,7 +17,7 @@ const DoctorDetails = () => {
 
   const {
     name,
-    qualification,
+    qualifications,
     experiences,
     timeSlots,
     reviews,
@@ -77,7 +77,7 @@ const DoctorDetails = () => {
             tab === 'about' && <DoctorAbout 
             name={name} 
             about={about} 
-            qualifications={qualification}
+            qualifications={qualifications}
             experiences={experiences}/>
           }
           {
