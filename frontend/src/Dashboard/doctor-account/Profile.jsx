@@ -63,53 +63,31 @@ const Profile = ({doctorData}) => {
 
         // console.log(data);
         setFormData({...formData, photo:data?.url})
-    };
+    };    
 
-    // const updateProfileHandler = async e => {
-    //     e.preventDefault();
-
-    //     try {
-    //         const res = await fetch(`${BASE_URL}/doctors/${doctorData._id}`,{
-    //             method:'Put',
-    //             headers:{
-    //                 'Content-Type':'Application/json',
-    //                 Authorization:`Bearer ${token}`
-    //             },
-    //             body: JSON.stringify(formData)
-    //         })
-
-    //         const result = await res.json()
-    //         if(!res.ok){
-    //             throw Error(result.message);
-    //         }
-    //         toast.success(result.message);
-    //     } catch (err) {
-    //         toast.error(err.message);
-    //     }
-    // };
     const updateProfileHandler = async e => {
-        e.preventDefault();
-    
-        try {
-            const res = await fetch(`${BASE_URL}/doctors/${doctorData._id}`, {
-                method: 'PUT', // Corrected to uppercase 'PUT'
-                headers: {
-                    'Content-Type': 'application/json', // Corrected to lowercase 'application/json'
-                    Authorization: `Bearer ${token}`
-                },
-                body: JSON.stringify(formData)
-            });
-    
-            const result = await res.json();
-            if (!res.ok) {
-                throw Error(result.message);
-            }
-            toast.success(result.message);
-        } catch (err) {
-            toast.error(err.message);
+    e.preventDefault();
+
+    try {
+      const res = await fetch(`${BASE_URL}/doctors/${doctorData._id}`, {
+        method: 'PUT',
+           headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${token}`
+            },
+
+            body: JSON.stringify(formData)
+        });
+
+        const result = await res.json();
+        if (!res.ok) {
+            throw Error(result.message);
         }
-    };
-    
+        toast.success(result.message);
+    } catch (err) {
+        toast.error(err.message);
+    }
+};
 
 
     //reusable function for adding item
@@ -145,16 +123,18 @@ const Profile = ({doctorData}) => {
         }));
     };
     //===================Qualification=============
-    const addQaulification = e =>{
+    const addQualification = e =>{
         e.preventDefault()
         
         addItem('qualifications',{
-            startingDate:"",endingDate:"", 
-            degree:"PHD", university:"Medical College",
+            startingDate:"",
+            endingDate:"", 
+            degree:"PHD", 
+            university:"Medical College",
         });
     };
 
-    const handleQaulificationChange = (event,index) =>{
+    const handleQualificationChange = (event,index) =>{
         handleReusableInputChangeFunc('qualifications', index, event)
     };
 
@@ -214,18 +194,17 @@ const Profile = ({doctorData}) => {
             />
             </div>
             <div className="mb-5">
-            <p className="form__label">Email*</p>
-            <input
+         <input
             type="text"
             name="email"
             value={formData.email}
             onChange={handleInputChange}
             placeholder="Email"
             className="form__input"
-            readOnly // Keep only this attribute
+            readOnly
             aria-readonly
-            disabled="true"
-            />
+        />
+
             </div>
             <div className="mb-5">
             <p className="form__label">Phone*</p>
@@ -285,7 +264,7 @@ const Profile = ({doctorData}) => {
             </div>
 {/* Qualification */}
             <div className="mb-5">
-                <p className="form__label">Qaulifications*</p>
+                <p className="form__label">Qualifications*</p>
                 {formData.qualifications?.map((item, index) => (<div key={index}>
                 <div>
                     <div className="grid grid-cols-2 gap-5">
@@ -296,7 +275,7 @@ const Profile = ({doctorData}) => {
                             name="startingDate"
                             value={item.startingDate}
                             className="form__input"
-                            onChange={e => handleQaulificationChange(e, index)}
+                            onChange={e => handleQualificationChange(e, index)}
                             />
                         </div>
                         <div>
@@ -306,7 +285,7 @@ const Profile = ({doctorData}) => {
                             name="endingDate"
                             value={item.endingDate}
                             className="form__input"
-                            onChange={e => handleQaulificationChange(e, index)}
+                            onChange={e => handleQualificationChange(e, index)}
                             />
                         </div>
                     </div>
@@ -319,7 +298,7 @@ const Profile = ({doctorData}) => {
                             name="degree"
                             value={item.degree}
                             className="form__input"
-                            onChange={e => handleQaulificationChange(e, index)}
+                            onChange={e => handleQualificationChange(e, index)}
                             />
                         </div>
                         <div>
@@ -329,7 +308,7 @@ const Profile = ({doctorData}) => {
                             name="university"
                             value={item.university}
                             className="form__input"
-                            onChange={e => handleQaulificationChange(e, index)}
+                            onChange={e => handleQualificationChange(e, index)}
                             />
                         </div>
                     </div>
@@ -341,7 +320,7 @@ const Profile = ({doctorData}) => {
             </div>
         ))}
 
-        <button onClick={addQaulification} className="bg-[#000] py-2 px-5 rounded text-white h-fit cursor-pointer" >
+        <button onClick={addQualification} className="bg-[#000] py-2 px-5 rounded text-white h-fit cursor-pointer" >
             Add Qualification 
         </button>
     </div>

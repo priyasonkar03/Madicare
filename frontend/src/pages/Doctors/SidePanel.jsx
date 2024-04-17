@@ -1,30 +1,32 @@
 import convertTime from "../../utils/convertTime";
-import {BASE_URL, token} from './../../config'
-import { toast } from 'react-toastify'
+import { BASE_URL, token } from './../../config';
+import { toast } from 'react-toastify';
 
-const SidePanel = ({doctorId, ticketPrice, timeSlots}) => {
+const SidePanel = ({ doctorId, ticketPrice, timeSlots }) => {
 
-   const bookingHandler = async()=>{
+   const bookingHandler = async () => {
     try {
         const res = await fetch(`${BASE_URL}/bookings/checkout-session/${doctorId}`,{
-            method:'post',
-            headers:{
-                Authorization:`Beare ${token}`
+            method: 'POST',
+            headers: {
+                Authorization: `Bearer ${token}`
             }
-        })
+        });
 
-        const data = await res.json()
+        const data = await res.json();
 
-        if(!res.ok){
-            throw new Error(data.message + "Please try again")
+        if (!res.ok) {
+            throw new Error((data && data.message) ? data.message + " Please try again" : "Failed to fetch checkout session. Please try again.");
         }
 
-        if(data.session.url){
-            window.location.href = data.session.url
+        if (data.session && data.session.url) {
+            window.location.href = data.session.url;
+        } else {
+            throw new Error('Session URL not found in the response.'); // Handle missing URL
         }
-
     } catch (err) {
-        toast.error(err.message)
+        console.error(err); // Log the error for further investigation
+        toast.error(err.message || 'An error occurred. Please try again.');
     }
    }
     
@@ -44,16 +46,17 @@ const SidePanel = ({doctorId, ticketPrice, timeSlots}) => {
                 {timeSlots?.map((item, index)=>(
                     <li key={index} className="flex items-center justify-between mb-2">
                     <p className='text-[15px] leading-6 text-textColor font-semibold'>
-                        {item.day.chartAt(0).toUpperCase() + item.day.slice(1)}</p>
+                        {item.day.charAt(0).toUpperCase() + item.day.slice(1)}</p>
                     <p className='text-[15px] leading-6 text-textColor font-semibold'>
                         {convertTime(item.startingTime)} - {convertTime(item.endingTime)}</p>
                     </li>
                 ))}
             </ul>
         </div>
-        <button onClick={bookingHandler} className='btn px-2 w-full rounded-md' type='button'>Book Appointment</button>
+        <button onClick={bookingHandler} className='btn px-2 w-full rounded-md' type='button'>
+            Book Appointment</button>
     </div>
-  )
+  );
 }
 
-export default SidePanel
+export default SidePanel;

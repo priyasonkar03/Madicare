@@ -24,7 +24,7 @@ export const getCheckoutSession = async(req, res)=>{
             line_items:[{
                 price_data:{
                     currency:'bdt',
-                    unit_amount:doctor.ticketPrice = 100,
+                    unit_amount:doctor.ticketPrice || 100,
                     product_data:{
                         name:doctor.name,
                         description:doctor.bio,
@@ -39,13 +39,14 @@ export const getCheckoutSession = async(req, res)=>{
         const booking = new Booking({
             doctor:doctor._id,
             user:user._id,
-            ticketPrice:doctor.ticketPrice,
+            ticketPrice:doctor.ticketPrice ||100,
             session:session.id
         })
 
         await booking.save()
 
         res.status(200).json({success:true, message:'Successfully paid', session})
+        
     } catch (err) {
 
         console.log(err);

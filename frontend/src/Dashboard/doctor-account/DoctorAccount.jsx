@@ -84,6 +84,7 @@ const DoctorAccount = () => {
                 qualifications={data.qualifications} 
                 experiences={data.experiences}/>
               </div>
+             
             )}
 
                
