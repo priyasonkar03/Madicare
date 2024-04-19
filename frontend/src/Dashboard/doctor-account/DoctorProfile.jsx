@@ -1,11 +1,12 @@
+/*eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
 import { AiOutlineDelete } from 'react-icons/ai'
 import uploadImageToClodinary from "../../utils/uploadCloudinary";
-import { BASE_URL, token } from "../../config";
-import { toast } from "react-toastify";
+import {BASE_URL} from '../../config';
+import { token } from "../../config";
+import {toast} from 'react-toastify'
 
-
-const Profile = ({doctorData}) => {
+const DoctorProfile = ({doctorData}) => {
     const [formData, setFormData] = useState({
         name:"",
         email:"",
@@ -22,73 +23,77 @@ const Profile = ({doctorData}) => {
         photo:null,
     });
 
-    useEffect(() => {
-        setFormData({
-            name: doctorData?.name || "",
-            email: doctorData?.email || "",
-            phone: doctorData?.phone || "",
-            bio: doctorData?.bio || "",
-            gender: doctorData?.gender || "",
-            specialization: doctorData?.specialization || "",
-            ticketPrice: doctorData?.ticketPrice || 0,
-            qualifications: doctorData?.qualifications || [{
-                startingDate: "",
-                endingDate: "",
-                degree: "PHD",
-                university: "Medical College"
-            }],
-            experiences: doctorData?.experiences || [{
-                startingDate: "",
-                endingDate: "",
-                position: "Senior Surgeon",
-                hospital: "Medical college"
-            }],
-            timeSlots: doctorData?.timeSlots || [{
-                day: "Sunday",
-                startingTime: "10:00",
-                endingTime: "04:30"
-            }],
-            about: doctorData?.about || "",
-            photo: doctorData?.photo || null,
-        });
-    }, [doctorData]);
+    // useEffect(() => {
+    //     setFormData({
+    //         name: doctor.name || "",
+    //         email: doctor?.email || "",
+    //         phone: doctor?.phone || "",
+    //         bio: doctor?.bio || "",
+    //         gender: doctor?.gender || "",
+    //         specialization: doctor?.specialization || "",
+    //         ticketPrice: doctor?.ticketPrice || 0,
+    //         qualifications: doctor?.qualifications || [{
+    //             startingDate: "",
+    //             endingDate: "",
+    //             degree: "PHD",
+    //             university: "Medical College"
+    //         }],
+    //         experiences: doctor?.experiences || [{
+    //             startingDate: "",
+    //             endingDate: "",
+    //             position: "Senior Surgeon",
+    //             hospital: "Medical college"
+    //         }],
+    //         timeSlots: doctor?.timeSlots || [{
+    //             day: "Sunday",
+    //             startingTime: "10:00",
+    //             endingTime: "04:30"
+    //         }],
+    //         about: doctor?.about || "",
+    //         photo: doctor?.photo || null,
+    //     });
+    // }, [doctor]);
+
+   
+
     
     const handleInputChange = e =>{
-        setFormData({...formData, [e.target.name]:e.target.value})
+      setFormData({...formData,[e.target.name]:e.target.value})
     };
 
     const handleFileInputChange = async event =>{
-        const file = event.target.files[0]
-        const data = await uploadImageToClodinary(file)
+        const file = event.target.files[0];
+        const data = await uploadImageToClodinary(file);
 
         // console.log(data);
-        setFormData({...formData, photo:data?.url})
+        setFormData({...formData, photo:data?.url});
     };    
 
     const updateProfileHandler = async e => {
     e.preventDefault();
+        try {
+            const res = await fetch(`${BASE_URL}/doctors/${doctorData._id}`,{
+                method:'PUT',
+                headers:{
+                    'Content-Type':'application/json',
+                    Authorization: `Bearer ${token}`
+                },
+                body: JSON.stringify(formData)
+            });
 
-    try {
-      const res = await fetch(`${BASE_URL}/doctors/${doctorData._id}`, {
-        method: 'PUT',
-           headers: {
-                'Content-Type': 'application/json',
-                Authorization: `Bearer ${token}`
-            },
+            const result = await res.json();
 
-            body: JSON.stringify(formData)
-        });
+            if(!res.ok){
+                throw Error(result.message);
+            }
 
-        const result = await res.json();
-        if (!res.ok) {
-            throw Error(result.message);
+            toast.success(result.message);
+            console.log(doctorData);
+        } catch (err) {
+            toast.error(err.message);
         }
-        toast.success(result.message);
-    } catch (err) {
-        toast.error(err.message);
-    }
-};
-
+  
+    };
 
     //reusable function for adding item
     const addItem = (key, item)=>{
@@ -183,7 +188,7 @@ const Profile = ({doctorData}) => {
         <h2 className="text-headingColor font-bold text-[24px] leading-9 mb-10">
             Profile information</h2>
 
-        <form>
+        <form onSubmit={updateProfileHandler} >
             <div className="mb-5">
             <p className="form__label">Name*</p>
             <input type="text" name="name" 
@@ -481,4 +486,5 @@ const Profile = ({doctorData}) => {
   );
 };
 
-export default Profile
+export default DoctorProfile
+

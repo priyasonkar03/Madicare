@@ -23,8 +23,12 @@ const Profile = ({user}) => {
     const navigate = useNavigate()
   
     useEffect(()=>{
-        setFormData({ name:user.name, email:user.email, photo:user.photo, 
-        gender:user.gender, bloodType:user.bloodType });
+        setFormData({
+          name:user.name, 
+          email:user.email, 
+          photo:user.photo, 
+          gender:user.gender, 
+          bloodType:user.bloodType });
     },[user])
 
     const handleInputChange = e =>{
@@ -81,8 +85,11 @@ const Profile = ({user}) => {
       
       <form onSubmit={submitHandler}>
         <div className="mb-5">
-          <input type="text" placeholder="Full Name" name="name" 
-          value={formData.name} onChange={handleInputChange}
+          <input type="text" 
+          placeholder="Full Name" 
+          name="name" 
+          value={formData.name} 
+          onChange={handleInputChange}
           className="w-full pr-4 py-3 border-b border-solid border-[#0066ff61] 
           focus:outline-none focus:border-b-primaryColor text-[16px] leading-7
           text-headingColor  cursor-pointer" required/>

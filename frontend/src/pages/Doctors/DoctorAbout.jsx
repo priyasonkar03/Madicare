@@ -17,7 +17,8 @@ const DoctorAbout = ({name, about, qualifications, experiences}) => {
                 Education</h3>
             <ul className='pt-4 md:p-5'>
 
-                {qualifications?.map((item, index)=> (<li key={index} className='flex flex-col sm:flex-row sm:justify-between
+                {qualifications?.map((item, index)=> (<li key={index} 
+                className='flex flex-col sm:flex-row sm:justify-between
                 sm:items-end md:gap-5 mb-[30px]'>
                  <div>
                     <span className='text-irisBlueColor text-[15px] leading-6
