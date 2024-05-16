@@ -6,7 +6,7 @@ import {BASE_URL} from '../../config';
 import { token } from "../../config";
 import {toast} from 'react-toastify'
 
-const DoctorProfile = ({doctorData}) => {
+const Profile = ({doctorData}) => {
     const [formData, setFormData] = useState({
         name:"",
         email:"",
@@ -23,42 +23,39 @@ const DoctorProfile = ({doctorData}) => {
         photo:null,
     });
 
-    // useEffect(() => {
-    //     setFormData({
-    //         name: doctor.name || "",
-    //         email: doctor?.email || "",
-    //         phone: doctor?.phone || "",
-    //         bio: doctor?.bio || "",
-    //         gender: doctor?.gender || "",
-    //         specialization: doctor?.specialization || "",
-    //         ticketPrice: doctor?.ticketPrice || 0,
-    //         qualifications: doctor?.qualifications || [{
-    //             startingDate: "",
-    //             endingDate: "",
-    //             degree: "PHD",
-    //             university: "Medical College"
-    //         }],
-    //         experiences: doctor?.experiences || [{
-    //             startingDate: "",
-    //             endingDate: "",
-    //             position: "Senior Surgeon",
-    //             hospital: "Medical college"
-    //         }],
-    //         timeSlots: doctor?.timeSlots || [{
-    //             day: "Sunday",
-    //             startingTime: "10:00",
-    //             endingTime: "04:30"
-    //         }],
-    //         about: doctor?.about || "",
-    //         photo: doctor?.photo || null,
-    //     });
-    // }, [doctor]);
-
-   
-
+    useEffect(() => {
+        setFormData({
+            name: doctorData?.name || "",
+            email: doctorData?.email || "",
+            phone: doctorData?.phone || "",
+            bio: doctorData?.bio || "",
+            gender: doctorData?.gender || "",
+            specialization: doctorData?.specialization || "",
+            ticketPrice: doctorData?.ticketPrice || 0,
+            qualifications: doctorData?.qualifications || [{
+                startingDate: "",
+                endingDate: "",
+                degree: "PHD",
+                university: "Medical College"
+            }],
+            experiences: doctorData?.experiences || [{
+                startingDate: "",
+                endingDate: "",
+                position: "Senior Surgeon",
+                hospital: "Medical college"
+            }],
+            timeSlots: doctorData?.timeSlots || [{
+                day: "Sunday",
+                startingTime: "10:00",
+                endingTime: "04:30"
+            }],
+            about: doctorData?.about || "",
+            photo: doctorData?.photo || null,
+        });
+    }, [doctorData]);
     
     const handleInputChange = e =>{
-      setFormData({...formData,[e.target.name]:e.target.value})
+        setFormData({...formData, [e.target.name]:e.target.value})
     };
 
     const handleFileInputChange = async event =>{
@@ -75,7 +72,7 @@ const DoctorProfile = ({doctorData}) => {
             const res = await fetch(`${BASE_URL}/doctors/${doctorData._id}`,{
                 method:'PUT',
                 headers:{
-                    'Content-Type':'application/json',
+                    'content-type':'application/json',
                     Authorization: `Bearer ${token}`
                 },
                 body: JSON.stringify(formData)
@@ -88,7 +85,6 @@ const DoctorProfile = ({doctorData}) => {
             }
 
             toast.success(result.message);
-            console.log(doctorData);
         } catch (err) {
             toast.error(err.message);
         }
@@ -188,7 +184,7 @@ const DoctorProfile = ({doctorData}) => {
         <h2 className="text-headingColor font-bold text-[24px] leading-9 mb-10">
             Profile information</h2>
 
-        <form onSubmit={updateProfileHandler} >
+        <form>
             <div className="mb-5">
             <p className="form__label">Name*</p>
             <input type="text" name="name" 
@@ -486,5 +482,5 @@ const DoctorProfile = ({doctorData}) => {
   );
 };
 
-export default DoctorProfile
+export default Profile
 

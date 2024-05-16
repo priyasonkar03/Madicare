@@ -5,7 +5,7 @@ import { BASE_URL } from '../../config';
 import starIcon from '../../assets/images/Star.png'
 import DoctorAbout from './../../pages/Doctors/DoctorAbout';
 import Appointments from './Appointments';
-import DoctorProfile from './DoctorProfile';
+import Profile from './Profile';
 // Import other components and hooks as needed
 
 const DoctorAccount = () => {
@@ -95,7 +95,7 @@ const DoctorAccount = () => {
               )}
       
           {tab === 'settings' && (
-            <DoctorProfile doctorData={data}/>
+            <Profile doctor={data}/>
           )}
             </div>
           </div>
