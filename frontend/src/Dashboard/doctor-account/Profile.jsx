@@ -66,29 +66,57 @@ const Profile = ({doctorData}) => {
         setFormData({...formData, photo:data?.url});
     };    
 
+    // const updateProfileHandler = async e => {
+    // e.preventDefault();
+    //     try {
+    //         const res = await fetch(`${BASE_URL}/doctors/${doctorData._id}`,{
+    //             method:'PUT',
+    //             headers:{
+    //                 'content-type':'application/json',
+    //                 Authorization: `Bearer ${token}`
+    //             },
+    //             body: JSON.stringify(formData)
+    //         });
+
+    //         const result = await res.json();
+
+    //         if(!res.ok){
+    //             throw Error(result.message);
+    //         }
+
+    //         toast.success(result.message);
+    //     } catch (err) {
+    //         toast.error(err.message);
+    //     }
+  
+    // };
     const updateProfileHandler = async e => {
-    e.preventDefault();
+        e.preventDefault();
+    
         try {
-            const res = await fetch(`${BASE_URL}/doctors/${doctorData._id}`,{
-                method:'PUT',
-                headers:{
-                    'content-type':'application/json',
-                    Authorization: `Bearer ${token}`
+            if (!doctorData || !doctorData._id) {
+                throw new Error("Doctor data is missing or incomplete");
+            }
+    
+            const res = await fetch(`${BASE_URL}/doctors/${doctorData._id}`, {
+                method: 'PUT',
+                headers: {
+                    'content-type': 'application/json',
+                    'Authorization': `Bearer ${token}`
                 },
                 body: JSON.stringify(formData)
             });
-
+    
             const result = await res.json();
-
-            if(!res.ok){
-                throw Error(result.message);
+    
+            if (!res.ok) {
+                throw new Error(result.message);
             }
-
+    
             toast.success(result.message);
         } catch (err) {
             toast.error(err.message);
         }
-  
     };
 
     //reusable function for adding item
@@ -202,8 +230,8 @@ const Profile = ({doctorData}) => {
             onChange={handleInputChange}
             placeholder="Email"
             className="form__input"
-            readOnly
-            aria-readonly
+            // readOnly
+            // aria-readonly
         />
 
             </div>

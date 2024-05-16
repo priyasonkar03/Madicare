@@ -1,14 +1,16 @@
 import React from 'react'
-import heroImg01 from '../assets/images/hero-img01.png'
-import heroImg02 from '../assets/images/hero-img02.png'
-import heroImg03 from '../assets/images/hero-img03.png'
+import heroImg01 from '../assets/images/Myimages/doc2.jpg'
+import heroImg02 from '../assets/images/Myimages/doc4.jpg'
+import heroImg03 from '../assets/images/Myimages/doc9.jpg'
+
 import icon01 from '../assets/images/icon01.png'
 import icon02 from '../assets/images/icon02.png'
 import icon03 from '../assets/images/icon03.png'
 import featureImg from '../assets/images/feature-img.png'
 import videoIcon from '../assets/images/video-icon.png'
 import avatarIcon from '../assets/images/avatar-icon.png'
-import faqImg from '../assets/images/faq-img.png'
+// import faqImg from '../assets/images/faq-img.png'
+import faqImg from '../assets/images/Myimages/doc10.jpg'
 import {Link} from 'react-router-dom'
 import {BsArrowRight} from 'react-icons/bs'
 import About from '../components/about/About'
@@ -29,9 +31,11 @@ const Home = () => {
           <div className='lg:w-[570px]'>
           <h1 className='text-[36px] leading-[46px] text-headingColor font-[800] md:text-[60px]
           md:leading-[70px]'>We help patients live a healthy, longer life</h1>
-          <p className='text__para'>Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
-            Laboriosam minima cupiditate impedit? Ullam, quae nisi! 
-            Officia earum exercitationem nisi quasi sunt quaerat quae aut eaque,
+          <p className='text__para'>Welcome to AYURVANI HEALTH CARE website,
+          your gateway to comprehensive healthcare services. Our platform 
+          offers easy access to appointment scheduling, medical records, and information on our wide range of medical specialties. Stay informed with the latest health news, patient stories, and upcoming events. Our dedicated team of professionals is here to provide exceptional care and support. 
+          Explore our site to learn more about our facilities, 
+          services, and commitment to your health and well-being.
             </p>
             <button className="btn">Request an Appointment</button>
           </div>
@@ -91,8 +95,8 @@ const Home = () => {
             <div className="mt-[30px]">
               <h2 className='text-[26px] leading-9 text-headingColor font-[700]
               text-center'>Find a Doctor</h2>
-              <p className='text-[16px] leading-7 text-textColor font-[400] mt-4 text-center'>World-class care for everyone. 
-              Our health System offers unmatched, export health care</p>
+              <p className='text-[16px] leading-7 text-textColor font-[400] mt-4 text-center'>The medical profession is the most respected profession in the world. No matter where you work, you as a doctor, 
+              lead a life of dignity and respect. Your gateway to trusted healthcare. Easily locate skilled medical professionals in your area with our user-friendly platform.</p>
 
               <Link to='/doctors' className='w-[44px] h-[44px] rounded-full
               border border-solid border-[#181A1E] mt-[30px] mx-auto flex items-center justify-center group hover:bg-primaryColor
@@ -110,10 +114,10 @@ const Home = () => {
             <div className="mt-[30px]">
               <h2 className='text-[26px] leading-9 text-headingColor font-[700]
               text-center'>Find a Location</h2>
-              <p className='text-[16px] leading-7 text-textColor font-[400] mt-4 text-center'>World-class care for everyone. 
-              Our health System offers unmatched, export health care</p>
+              <p className='text-[16px] leading-7 text-textColor font-[400] mt-4 text-center'>Healing happens best when patients feel connected, cared for, 
+              and supported in their journey to wellness. or In the heart of our community, we stand as a beacon of healing and hope for all who walk through our doors.</p>
 
-              <Link to='/doctors' className='w-[44px] h-[44px] rounded-full
+              <Link to='https://maps.google.com/' className='w-[44px] h-[44px] rounded-full
               border border-solid border-[#181A1E] mt-[30px] mx-auto flex items-center justify-center group hover:bg-primaryColor
               hover:border-none'>
                 <BsArrowRight className='group-hover:text-white w-6 h-5' />
@@ -129,8 +133,7 @@ const Home = () => {
             <div className="mt-[30px]">
               <h2 className='text-[26px] leading-9 text-headingColor font-[700]
               text-center'>Book Appointment</h2>
-              <p className='text-[16px] leading-7 text-textColor font-[400] mt-4 text-center'>World-class care for everyone. 
-              Our health System offers unmatched, export health care</p>
+              <p className='text-[16px] leading-7 text-textColor font-[400] mt-4 text-center'>Booking appointments is crucial for managing time effectively and ensuring access to healthcare services. It streamlines the process for both patients and providers, reducing wait times and ensuring timely care.</p>
 
               <Link to='/doctors' className='w-[44px] h-[44px] rounded-full
               border border-solid border-[#181A1E] mt-[30px] mx-auto flex items-center justify-center group hover:bg-primaryColor
@@ -151,7 +154,7 @@ const Home = () => {
     <div className="container">
       <div className="xl:w-[470px] mx-auto ">
         <h2 className="heading text-center">Our medical services</h2>
-        <p className='text__para text-center'>World-class care for everyone. Our health System offers unmatched, export health care.</p>
+        <p className='text__para text-center'>Our medical services encompass more than treatments and procedures; they represent a commitment to excellence, compassion, and personalized care. </p>
       </div>
       <ServiceList/>
     </div>
@@ -219,7 +222,7 @@ const Home = () => {
       <div className="container">
       <div className="xl:w-[470px] mx-auto ">
         <h2 className="heading text-center">Our Great Doctors</h2>
-        <p className='text__para text-center'>World-class care for everyone. Our health System offers unmatched, export health care.</p>
+        <p className='text__para text-center'>Great doctors don't just heal bodies. they inspire hope, instill confidence, and touch lives with compassion. </p>
       </div>
       <DoctorList/>
       </div>
